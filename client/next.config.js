@@ -5,6 +5,13 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 module.exports = withCSS(
     {
+        // to set defaults, add serverRuntimeConfig and publicRuntimeConfig
+        serverRuntimeConfig: {
+            // only available on server side
+        },
+        publicRuntimeConfig: {
+            // available on both server and client
+        },
         webpack(config, options) {
             config.plugins = config.plugins || [];
             config.plugins = [
@@ -18,6 +25,9 @@ module.exports = withCSS(
         }
     }
 );
+// to run in prod set node.env var to production then run
+// node server.js
+// Why? Next overrides production with dev for node.env var
 // Why could built-in css be commented out? see below
 /*
 Why This Error Occurred

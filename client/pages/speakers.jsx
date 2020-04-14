@@ -3,10 +3,18 @@ import axios from 'axios';
 import SpeakerCard from '../src/SpeakerCard.jsx';
 
 class Speakers extends Component {
+    // getting key-value pairs from .env
+    static GetSpeakersUrl() {
+        if (process.env.NODE_ENV === "production") {
+            return process.env.RESTURL_SPEAKERS_PROD || publicRuntimeConfig.RESTURL_SPEAKERS_PROD
+        } else {
+            return process.env.RESTURL_SPEAKERS_DEV
+        }
+    }
 
     static async getInitialProps () {
-        var promise = axios.get('http://localhost:4000/speakers').
-        then(response => {
+        const promise = axios.get(Speakers.GetSpeakersUrl())
+        .then(response => {
             return {
                 hasErrored: false,
                 speakerData: response.data
