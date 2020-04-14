@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
+import DigitalClock from '../src/DigitalClock.jsx';
 
-class Index extends React.Component {
+class Index extends Component {
 
     constructor(props) {
         super(props);
@@ -27,8 +28,7 @@ class Index extends React.Component {
 
 
     render() {
-        return <h1>Hello From Pluralsight and React:
-        &nbsp; {this.state.time}</h1>
+        return <DigitalClock time={this.state.time}></DigitalClock> 
     }
 }
 
