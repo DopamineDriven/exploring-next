@@ -3,23 +3,28 @@ import DigitalClock from '../src/DigitalClock.jsx';
 
 class Index extends Component {
 
+    static async getInitialProps () {
+        
+    }
+
     constructor(props) {
         super(props);
         this.state = {
-            time: new Date().toLocaleString()
+            //time: new Date().toISOString()
+            time: props.time
         }
     }
 
     tick() {
         this.setState(() => {
             return ({
-                time: new Date().toLocaleString()
+                time: new Date().toISOString()
             });
         });
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.tick(), 1000);
+        this.interval = setInterval(() => this.tick(), 100);
     }
 
     componentWillUnmount() {
@@ -28,7 +33,7 @@ class Index extends Component {
 
 
     render() {
-        return <DigitalClock time={this.state.time}></DigitalClock> 
+        return <DigitalClock time={this.state.time}></DigitalClock>
     }
 }
 
