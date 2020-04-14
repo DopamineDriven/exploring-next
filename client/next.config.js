@@ -31,6 +31,8 @@ module.exports = withCSS(
         }
     }
 );
+// https://www.youtube.com/watch?v=_9AWYlt86B8
+// https://www.lifewire.com/upgrade-windows-10-home-to-pro-4178259
 // to run in prod set node.env var to production then run
 // node server.js
 // Why? Next overrides production with dev for node.env var
