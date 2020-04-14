@@ -1,0 +1,23 @@
+{
+  "name": "exploring-next",
+  "version": "1.0.0",
+  "description": "next.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DopamineDriven/exploring-next.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DopamineDriven/exploring-next/issues"
+  },
+  "homepage": "https://github.com/DopamineDriven/exploring-next#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
