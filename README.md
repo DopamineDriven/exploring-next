@@ -1,7 +1,11 @@
 # exploring-next
-next.js
+- next.js
 
 
 ### server vs client side rendering
 - pages directory is required by next.js
-- digitalclock component pulled in from src
+
+
+### mimic rest production server
+- https://npmjs.com/package/json-server
+- npm run json-server
