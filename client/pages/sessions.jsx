@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Link from 'next/link';
+// import Link from 'next/link';
+import SessionCard from '../src/SessionCard.jsx';
 
 
 class Sessions extends Component {
 
     static async getInitialProps() {
-        // returns sessions instead of speakers
-        const promise = axios.get('http://localhost:4000/sessions').then(response => {
+
+        var promise = axios.get('http://localhost:4000/sessions').then(response => {
             return {
                 hasErrored: false,
                 sessionData: response.data
@@ -44,19 +45,18 @@ class Sessions extends Component {
 
     render() {
         return (
-            
-            <div>
-                <Link href='./'>
-                    <a>SPEAKERS</a>
-                </Link>
-                <ul>
-                    {this.state.sessionData.map((session) =>
-                        <li key={session.id}>
-                            {session.title} {session.id}
-                        </li>
-                    )}
-                </ul>
+            <div className="container">
+                <div className="row">
+                    <div className="card-deck">
+                        {this.state.sessionData.map((session) =>
+                            <div className="card col-4 cardmin margintopbottom" key={session.id}>
+                                <SessionCard session={session}/>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
+
         )
     }
 
