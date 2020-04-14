@@ -10,4 +10,8 @@
 - https://npmjs.com/package/json-server
 - npm run json-server
 
-### 
+### Pascal-Case
+- components always named in pascal-case
+    - first letter uppercase
+    - includes components in pages directory
+    - why are pages lowercase? routing issue
