@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import Link from 'next/link';
 import SessionCard from '../src/SessionCard.jsx';
+import getConfig from 'next/config';
+const {serverRuntimeConfig, publicRuntimeConfig} = getConfig();
 
 
 class Sessions extends Component {
+    static GetSessionsUrl() {
+        if (process.env.NODE_ENV === "production") {
+            return process.env.RESTURL_SESSIONS_PROD
+                || publicRuntimeConfig.RESTURL_SESSIONS_PROD;
+        } else {
+            return process.env.RESTURL_SESSIONS_DEV;
+        }
+    }
 
     static async getInitialProps() {
 
