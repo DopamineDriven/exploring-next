@@ -1,6 +1,24 @@
 const withCSS = require('@zeit/next-css');
-module.exports = withCSS();
-// Why is built-in css support commented out? see below
+// npm i dotenv-webpack path --save
+require('dotenv').config();
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+module.exports = withCSS(
+    {
+        webpack(config, options) {
+            config.plugins = config.plugins || [];
+            config.plugins = [
+                ...config.plugins,
+                // read the .env file
+                new Dotenv({
+                    path: path.join(__dirname, ".env"),
+                    systemvars: true
+                })
+            ]
+        }
+    }
+);
+// Why could built-in css be commented out? see below
 /*
 Why This Error Occurred
 Custom CSS configuration was added in next.config.js which disables the built-in CSS/SCSS support to prevent conflicting configuration.
