@@ -42,19 +42,17 @@ class Speakers extends Component {
 
 
     render() {
-        // map speaker into <li></li> on page
         return (
-            <div>
-                <Link href='./sessions'>
-                    <a>SESSIONS</a>
-                </Link>
-                <ul>
-                    {this.state.speakerData.map((speaker) =>
-                        <li key={speaker.id}>
-                            {speaker.firstName} {speaker.lastName}
-                        </li>
-                    )}
-                </ul>
+            <div className="container">
+                <div className="row">
+                    <div className="card-deck">
+                        {this.state.speakerData.map((speaker) =>
+                            <div className="card col-4 cardmin margintopbottom20" key={speaker.id}>
+                                <SpeakerCard speaker={speaker}/>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </div>
         )
     }
