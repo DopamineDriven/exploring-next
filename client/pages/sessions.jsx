@@ -3,7 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 
 
-class Index extends Component {
+class Sessions extends Component {
 
     static async getInitialProps() {
         // returns sessions instead of speakers
@@ -62,5 +62,4 @@ class Index extends Component {
 
 }
 
-export default Index
-
+export default Sessions;
