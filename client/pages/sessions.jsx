@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import axios from 'axios';
 import Link from 'next/link';
 
+
 class Index extends Component {
 
-    static async getInitialProps () {
-        var promise = axios.get('http://localhost:4000/speakers').
-        then(response => {
+    static async getInitialProps() {
+        // returns sessions instead of speakers
+        const promise = axios.get('http://localhost:4000/sessions').then(response => {
             return {
                 hasErrored: false,
-                speakerData: response.data
+                sessionData: response.data
             };
         })
             .catch(error => {
@@ -19,14 +20,16 @@ class Index extends Component {
                 }
             });
         return promise;
+
+
     }
-    // getInitProps called before class is instantiated 
+
     constructor(props) {
         super(props);
         this.state = {
             hasErrored: props.hasErrored,
             message: props.message,
-            speakerData: props.speakerData
+            sessionData: props.sessionData
         }
     }
 
@@ -35,32 +38,29 @@ class Index extends Component {
 
     }
 
-     componentWillUnmount() {
+    componentWillUnmount() {
 
     }
 
-
     render() {
-        // map speaker into <li></li> on page
         return (
+            
             <div>
-                <Link href='./sessions'>
-                    <a>SESSIONS</a>
+                <Link href='./'>
+                    <a>SPEAKERS</a>
                 </Link>
                 <ul>
-                    {this.state.speakerData.map((speaker) =>
-                        <li key={speaker.id}>
-                            {speaker.firstName} {speaker.lastName}
+                    {this.state.sessionData.map((session) =>
+                        <li key={session.id}>
+                            {session.title} {session.id}
                         </li>
                     )}
                 </ul>
             </div>
         )
     }
+
 }
 
-export default Index;
-
-
-
+export default Index
 
