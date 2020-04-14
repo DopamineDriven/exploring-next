@@ -1,6 +1,7 @@
 # exploring-next
 - next.js
 
+https://nodejs.org/api/process.html#process_process_env
 
 ### server vs client side rendering
 - pages directory is required by next.js
