@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
-
+// bootstrap suggests to always add a meta-tag with 
+// the name viewport to header section of all pages 
+// next gives us special file called _document.js which
+// is put in the pages 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/site.css';
 
