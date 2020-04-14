@@ -15,6 +15,8 @@ class SpeakerCard extends Component {
                                     speakerId: this.props.speaker.id
                                 }
                         }}
+                        // as attribute introduced
+                        // should have been called future URL shown in browser after link run
                         as={`speaker/${this.props.speaker.id}`}>
                         <a className="btn btn-lg btn-block btn-outline-primary">
                             Details</a>
