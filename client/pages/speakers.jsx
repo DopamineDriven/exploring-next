@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Link from 'next/link';
-// https://nextjs.org/docs/api-reference/next/link
+import SpeakerCard from '../src/SpeakerCard.jsx';
 
 class Speakers extends Component {
 
