@@ -16,3 +16,5 @@ https://nodejs.org/api/process.html#process_process_env
     - first letter uppercase
     - includes components in pages directory
     - why are pages lowercase? routing issue
+
+#### Must install Windows10 Pro to use Docker
