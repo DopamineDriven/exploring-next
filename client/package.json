@@ -18,6 +18,7 @@
     "bootstrap": "^4.4.1",
     "dotenv-webpack": "^1.7.0",
     "express": "^4.17.1",
+    "lru-cache": "^5.1.1",
     "next": "^9.3.4",
     "next-images": "^1.4.0",
     "path": "^0.12.7",

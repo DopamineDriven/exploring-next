@@ -43,3 +43,13 @@ https://nodejs.org/api/process.html#process_process_env
     - Served seamlessly from points all over the world 
 - Placeholder images while waiting for data to download
     - Animated lines of what appears to be data to ensure user data is being downloaded 
+
+### See next-compose-plugins npm to avoid embedding nests
+
+## Downsides of Server-Side Rendering
+- Every page landing causes a complex Node invocation 
+    - Could bog down even strong servers
+    - Some say server-side rendered apps are wrong for high volume sites for this very reason 
+- High volume sites like Airbnb and Facebook that use React, so how do they keep them fast?
+    - Implement caching schemes to keep servers fresh and fast
+        - server-side caches

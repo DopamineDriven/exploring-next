@@ -1,9 +1,18 @@
 const express = require('express');
 const next = require('next');
+const LRUcache = require('lru-cache');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
-// next({dev}) prepare()
+
+const ssrCache = new LRUcache({
+    length: (n, key) => {
+        return n.toString().length + key.toString().length
+    },
+    max: 100 * 1000 * 1000, // 100MB cache soft limit
+    maxAge: 1000 * 10 // 10 seconds
+})
+
 app.prepare()
     .then(() => {
         // instead of setting express to app (as you would in many cases)
@@ -19,7 +28,15 @@ app.prepare()
         });
         // server handling input url via *
         server.get('*', (req, res) => {
-            return handle(req, res)
+            if (
+                req.url === "/" ||
+                req.url === "/speakers" ||
+                req.url === "/sessions"
+            ) {
+                return renderAndCache(req, res, req.url, {})
+            } else {
+                return handle(req, res)
+            }
         });
         // server listening on port 3000
         server.listen(3000, (err) => {
