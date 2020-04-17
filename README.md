@@ -53,3 +53,8 @@ https://nodejs.org/api/process.html#process_process_env
 - High volume sites like Airbnb and Facebook that use React, so how do they keep them fast?
     - Implement caching schemes to keep servers fresh and fast
         - server-side caches
+
+### Enter LRU cache
+- over 11 million weekly downloads
+- use in server
+    - cache object that deletes the least recently used items 

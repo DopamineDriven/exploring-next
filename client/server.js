@@ -4,14 +4,14 @@ const LRUcache = require('lru-cache');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
-
+// 
 const ssrCache = new LRUcache({
     length: (n, key) => {
         return n.toString().length + key.toString().length
     },
     max: 100 * 1000 * 1000, // 100MB cache soft limit
     maxAge: 1000 * 10 // 10 seconds
-})
+});
 
 app.prepare()
     .then(() => {
@@ -26,7 +26,9 @@ app.prepare()
             // creating client-side route 
             app.render(req, res, actualPage, queryParams);
         });
-        // server handling input url via *
+        // renderAndCache checks to see if the page has been rendered and cached before
+        // if so, use that and avoid rendering pipeline by 
+        // retrieving html from server-based memory and returning it
         server.get('*', (req, res) => {
             if (
                 req.url === "/" ||
@@ -48,3 +50,28 @@ app.prepare()
         console.error(ex.stack);
         process.exit(1)
     });
+
+    async function renderAndCache(req, res, pagePath, queryParams) {
+        const key = getCacheKey(req);
+        if (ssrCache.has(key)) {
+            res.setHeader("x-cache", "HIT")
+            res.send(ssrCache.get(key))
+            return
+        }
+        try {
+            const html = await app.renderToHTML(req, res, pagePath, queryParams)
+            if (res.statusCode !== 200) {
+                res.send(html)
+                return
+            }
+            ssrCache.set(key, html)
+            res.setHeader("x-cache", "MISS")
+            res.send(html)
+        } catch (err) {
+            app.renderError(err, req, res, pagePath, queryParams)
+        }
+    }
+
+    function getCacheKey(req) {
+        return `${req.url}`
+    }
