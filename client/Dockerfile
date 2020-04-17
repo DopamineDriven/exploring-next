@@ -5,7 +5,7 @@ FROM node:alpine
 RUN mkdir -p /usr/src
 WORKDIR /usr/src
 
-# Install app dependencies (pkg.json), run npm installs
+# Install app dependencies (pkg.json)
 COPY package.json /usr/src/
 COPY package-lock.json /usr/src/
 RUN npm install
