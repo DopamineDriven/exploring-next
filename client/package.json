@@ -4,7 +4,7 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
     "start": "next start",
     "json-server": "json-server --watch db.json --port 4000 --delay 200"
@@ -18,7 +18,7 @@
     "bootstrap": "^4.4.1",
     "dotenv-webpack": "^1.7.0",
     "express": "^4.17.1",
-    "next": "9.3.4",
+    "next": "^9.3.4",
     "path": "^0.12.7",
     "react": "16.13.1",
     "react-dom": "16.13.1"

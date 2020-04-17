@@ -28,6 +28,7 @@ module.exports = withCSS(
                     systemvars: true
                 })
             ]
+            return config;
         }
     }
 );
