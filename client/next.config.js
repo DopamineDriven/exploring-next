@@ -3,7 +3,9 @@ const withCSS = require('@zeit/next-css');
 require('dotenv').config();
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const withImages = require('next-images');
 module.exports = withCSS(
+    withImages(
     {
         // to set defaults, add serverRuntimeConfig and publicRuntimeConfig
         serverRuntimeConfig: {
@@ -30,7 +32,7 @@ module.exports = withCSS(
             ]
             return config;
         }
-    }
+    })
 );
 // https://www.youtube.com/watch?v=_9AWYlt86B8
 // https://www.lifewire.com/upgrade-windows-10-home-to-pro-4178259
