@@ -56,5 +56,10 @@ https://nodejs.org/api/process.html#process_process_env
 
 ### Enter LRU cache
 - over 11 million weekly downloads
-- use in server
+- use in server (ssrCache)
     - cache object that deletes the least recently used items 
+- use curl commands to test how long the first call takes (precache) then another call thereafter once LRUcache is set up
+    - curl -s -w "%{time_total}\n" -o /dev/null http://142.93.194.248/speakers
+        - 4.036826
+    - curl -s -w "%{time_total}\n" -o /dev/null http://142.93.194.248/speakers
+        - 0.348377

@@ -4,7 +4,8 @@ const LRUcache = require('lru-cache');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({dev});
 const handle = app.getRequestHandler();
-// 
+
+// cache object that deletes the least recently used items 
 const ssrCache = new LRUcache({
     length: (n, key) => {
         return n.toString().length + key.toString().length
@@ -51,6 +52,13 @@ app.prepare()
         process.exit(1)
     });
 
+    // (1) creates cache key based on url passed in
+    // (2) checks with ssrCache object 
+        // (a) if cache val avail -> cached before; send obj back as web res
+        // (b) if !cache val avail -> calls the React library, 
+            // takes return string from render to HTML
+            // stores it in cache
+            // then returns to caller so it can be output to browser 
     async function renderAndCache(req, res, pagePath, queryParams) {
         const key = getCacheKey(req);
         if (ssrCache.has(key)) {
