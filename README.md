@@ -63,3 +63,14 @@ https://nodejs.org/api/process.html#process_process_env
         - 4.036826
     - curl -s -w "%{time_total}\n" -o /dev/null http://142.93.194.248/speakers
         - 0.348377
+    - cached url -> response over 10x faster
+
+
+## CDN: Content Delivery Network
+- Amazon CloudFront
+- purchased domain name asross311.com (namecheap)
+- US government healthcare website went down for weeks because all assets (css, images, js, etc) on site just pointed back to hosting url with a relative path; no CDN
+- can add an asset prefix above inlineImageLimit in next.config.js pointing to CDN (assetPrefix: 'http://xyz.cloudfront.net')
+
+### Network dev tool
+- Indicates how many requests per url (32 currently)
